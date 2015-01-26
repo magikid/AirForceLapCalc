@@ -2,24 +2,40 @@
   <ion-content class="padding">
     <div class="list">
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Number of laps?</span>
-        <input type="number" pattern="\d*" placeholder="12" ng-model="laps">
+        <span class="input-label">Number of laps in 1.5 miles?</span>
+        <input type="number" pattern="\d*" placeholder="12" ng-model="laps" min="1" integer>
       </label>
-      <label class="item item-input item-stacked-label">
+      <div class="item item-input item-stacked-label">
         <span class="input-label">Goal time?</span>
-        <div class="row center">
+        <div class="row pull-center">
           <div class="col">
-            <input type="number" pattern="\d*" placeholder="Mins" ng-model="time.minutes">
+            <a class="button button-outline button-balanced" ng-click="incMinutes()">Up</a>
           </div>
-          <div class="col">:</div>
+          <div class="col"></div>
           <div class="col">
-            <input type="number" pattern="\d*" placeholder="Secs" ng-model="time.seconds">
+            <a class="button button-outline button-balanced" ng-click="incSeconds()">Up</a>
           </div>
         </div>
-      </label>
+        <div class="row pull-center">
+          <div class="col">
+            <input class="pull-right" type="number" pattern="\d*" ng-model="goalTime.minutes" min="0" integer ng-model-options="{ getterSetter: true }">
+          </div>
+          <div class="col"><div class="align-with-input">mins</div></div>
+          <div class="col"><div class="align-with-input">:</div></div>
+          <div class="col">
+            <input class="pull-right" type="number" pattern="\d*" ng-model="goalTime.seconds" min="0" integer ng-model-options="{ getterSetter: true }">
+          </div>
+          <div class="col"><div class="align-with-input">secs</div></div>
+        </div>
+        <div class="row pull-center">
+          <div class="col"><a class="button button-outline button-assertive" ng-click="decMinutes()">Down</a></div>
+          <div class="col"></div>
+          <div class="col"><a class="button button-outline button-assertive" ng-click="decSeconds()">Down</a></div>
+        </div>        
+      </div>
       <label class="item item-input item-stacked-label">
-        <span class="input-label">Your goal lap time should be:</span>
-        <input ng-model="goallap">
+        <span class="input-label">Your lap time should be:</span>
+        <p>{{ goalLap(goalTime.minutes(), goalTime.seconds(), laps) }}</p>
       </label>
     </div>
   </ion-content>
