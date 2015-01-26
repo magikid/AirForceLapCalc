@@ -1,5 +1,13 @@
 /* Empty. Add your own CSS if you like */
 
-.center{
+.pull-center{
 	text-align: center;
+}
+
+.pull-right{
+	text-align: right
+}
+
+.align-with-input{
+	padding-top: 6px;
 }
